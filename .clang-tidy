@@ -1,0 +1,55 @@
+# see https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+---
+BasedOnStyle: LLVM
+Language: Cpp
+Standard: c++14
+UseTab: Never
+IndentWidth: 4
+ColumnLimit: 160
+
+# Sort Headerfile
+SortIncludes: true
+IncludeBlocks: Merge
+IncludeCategories:
+  # Headers in <> without extension.
+  - Regex:           '<([A-Za-z0-9\Q/-_\E])+>'
+    Priority:        4
+  # Headers in <> from specific external libraries.
+  - Regex:           '<boost\/'
+    Priority:        3
+  # Headers in <> with extension.
+  - Regex:           '<([A-Za-z0-9.\Q/-_\E])+>'
+    Priority:        2
+  # Headers in "" with extension.
+  - Regex:           '"([A-Za-z0-9.\Q/-_\E])+"'
+    Priority:        1
+
+
+# Namepsace, Template, Function, Class Declare
+AccessModifierOffset: -4
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortLambdasOnASingleLine: Empty
+AlwaysBreakTemplateDeclarations: Yes
+FixNamespaceComments: true
+
+# Alignment
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterCaseLabel: true
+  AfterClass: false
+  AfterControlStatement: MultiLine
+  AfterFunction: false
+  AfterNamespace: false
+  BeforeCatch: false
+AlignAfterOpenBracket: AlwaysBreak
+AlignConsecutiveAssignments: None
+AlignConsecutiveBitFields:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: false
+AlignArrayOfStructures: Right
+AlignEscapedNewlines: Left
+BreakConstructorInitializers: BeforeComma
+IndentPPDirectives: AfterHash
+PointerAlignment: Left
+PackConstructorInitializers: NextLineOnly
