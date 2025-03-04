@@ -8,7 +8,7 @@ file(GLOB TS_DIRS RELATIVE ${CMAKE_SOURCE_DIR} "TS*")
 
 foreach (dir ${TS_DIRS})
     # 只接受資料夾
-    if (IS_DIRECTORY "${CMAKE_SOURCE_DIR}/${dir}")
+    if (NOT IS_DIRECTORY "${CMAKE_SOURCE_DIR}/${dir}")
         continue()
     endif ()
 
