@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.30)
 project(NTUST_OOP_113_2_Homework)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 14)
 
 # 搜尋專案根目錄下所有名稱以 TS 開頭的資料夾
 file(GLOB TS_DIRS RELATIVE ${CMAKE_SOURCE_DIR} "TS*")
