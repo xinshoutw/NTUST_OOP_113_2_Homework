@@ -26,7 +26,7 @@ int main() {
         sortedResult.begin(),
         sortedResult.end(),
         [](const std::pair<int64_t, int64_t>& l, const std::pair<int64_t, int64_t>& r) {
-            return l.second < r.second;
+            return l.first < r.first;
         }
     );
 

@@ -1,8 +1,6 @@
 #include <complex>
 #include <iostream>
 #include <cstdint>
-#include <iomanip>
-#include <cstring>
 
 int main() {
     std::string input; // X
@@ -10,8 +8,8 @@ int main() {
     int32_t full_length_limit; // M
 
     while (std::cin >> input >> full_length_limit >> decimal_length_limit) {
-        getchar();
-        const uint8_t padding = getchar(); // C
+        std::cin.get();
+        const uint8_t padding = std::cin.get(); // C
         const size_t find_index = input.find('.');
         const bool have_decimal_point = find_index != std::string::npos;
         const auto whole_number_length = static_cast<int32_t>(have_decimal_point ? find_index : input.length());
