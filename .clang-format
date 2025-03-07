@@ -1,4 +1,4 @@
-# see https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+﻿# see https://clang.llvm.org/docs/ClangFormatStyleOptions.html
 ---
 BasedOnStyle: LLVM
 Language: Cpp
@@ -12,17 +12,17 @@ SortIncludes: true
 IncludeBlocks: Merge
 IncludeCategories:
   # Headers in <> without extension.
-  - Regex:           '<([A-Za-z0-9\Q/-_\E])+>'
-    Priority:        4
+  - Regex: '<([A-Za-z0-9\Q/-_\E])+>'
+    Priority: 4
   # Headers in <> from specific external libraries.
-  - Regex:           '<boost\/'
-    Priority:        3
+  - Regex: '<boost\/'
+    Priority: 3
   # Headers in <> with extension.
-  - Regex:           '<([A-Za-z0-9.\Q/-_\E])+>'
-    Priority:        2
+  - Regex: '<([A-Za-z0-9.\Q/-_\E])+>'
+    Priority: 2
   # Headers in "" with extension.
-  - Regex:           '"([A-Za-z0-9.\Q/-_\E])+"'
-    Priority:        1
+  - Regex: '"([A-Za-z0-9.\Q/-_\E])+"'
+    Priority: 1
 
 
 # Namepsace, Template, Function, Class Declare
@@ -43,13 +43,11 @@ BraceWrapping:
   BeforeCatch: false
 AlignAfterOpenBracket: AlwaysBreak
 AlignConsecutiveAssignments: None
-AlignConsecutiveBitFields:
-  Enabled: true
-  AcrossEmptyLines: false
-  AcrossComments: false
-AlignArrayOfStructures: Right
+AlignConsecutiveBitFields: Consecutive
 AlignEscapedNewlines: Left
 BreakConstructorInitializers: BeforeComma
 IndentPPDirectives: AfterHash
 PointerAlignment: Left
-PackConstructorInitializers: NextLineOnly
+# If use Windows Visual Studio，DON'T Enable the following options
+# AlignArrayOfStructures: Right
+# PackConstructorInitializers: NextLineOnly
