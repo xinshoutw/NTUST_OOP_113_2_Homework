@@ -13,6 +13,9 @@ uint64_t kBorderHeight;
 uint64_t kBorderWidth;
 bool* kCanvas;
 
+/**
+ * @brief Draw kCanvas, true to be 'X', false(default) to be '*'.
+ */
 void DrawCanvas() {
     for (int y = 0; y < kBorderHeight; ++y) {
         for (int x = 0; x < kBorderWidth; ++x) {
@@ -27,12 +30,15 @@ void DrawCanvas() {
     std::cout.put('\n');
 }
 
+/**
+ * @brief Get inputs, check boarders, update canvas, draw canvas.
+ */
 void ProcessDrawSquare() {
     int64_t length;
     int64_t x1, y1;
     std::cin >> length >> x1 >> y1;
 
-    // border check
+    // check borders
     if ((x1 < 0) || (y1 < 0) || (x1 + length > kBorderWidth) || (y1 + length > kBorderHeight)) {
         std::cout << "Out of range.\n\n";
         return;
@@ -45,12 +51,15 @@ void ProcessDrawSquare() {
     DrawCanvas();
 }
 
+/**
+ * @brief Get inputs, check boarders, update canvas, draw canvas.
+ */
 void ProcessDrawLine() {
     int64_t x1, y1;
     int64_t x2, y2;
     std::cin >> x1 >> y1 >> x2 >> y2;
 
-    // border check
+    // check borders
     if ((x1 < 0) || (x1 >= kBorderWidth) || (y1 < 0) || (y1 >= kBorderHeight) || (x2 < 0) || (x2 >= kBorderWidth) || (y2 < 0) || (y2 >= kBorderHeight)) {
         std::cout << "Out of range.\n\n";
         return;
@@ -85,13 +94,16 @@ void ProcessDrawLine() {
     DrawCanvas();
 }
 
+/**
+ * @brief Get inputs, check boarders, update canvas, draw canvas.
+ */
 void ProcessDrawTriangle() {
     int64_t length;
     int64_t x1, y1;
     char facing[3]; // include '\0'
     std::cin >> length >> x1 >> y1 >> facing;
 
-    // border check
+    // check borders
     if ((x1 < 0) || (y1 < 0)) {
         std::cout << "Out of range.\n\n";
         return;
