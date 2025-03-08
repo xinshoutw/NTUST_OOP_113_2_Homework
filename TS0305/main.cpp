@@ -17,14 +17,14 @@ void DrawCanvas() {
     for (int y = 0; y < kBorderHeight; ++y) {
         for (int x = 0; x < kBorderWidth; ++x) {
             if (kCanvas[y * kBorderWidth + x]) {
-                std::cout << "X";
+                std::cout.put('X');
             } else {
-                std::cout << "*";
+                std::cout.put('*');
             }
         }
-        std::cout << '\n';
+        std::cout.put('\n');
     }
-    std::cout << '\n';
+    std::cout.put('\n');
 }
 
 void ProcessDrawSquare() {
