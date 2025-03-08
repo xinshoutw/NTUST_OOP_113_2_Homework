@@ -1,26 +1,42 @@
+////////////////////////////////////////////////////////////////////////////////
+/// @brief Read file and print the most three highest score and name
+///
+/// @file main.cpp
+/// @author xinshoutw <admin@xinshou.tw>
+/// @date 2025/03/07
+/// @version 0.0.1
+////////////////////////////////////////////////////////////////////////////////
+
 #include <iostream>
 #include <vector>
 
-void getHighScores(std::vector<std::pair<std::string, int>>& memberData) {
-    std::sort(memberData.begin(), memberData.end(), [](const auto& a, const auto& b) {
-        return a.second > b.second;
+/**
+ * @brief Sort the vector by the largest score first.
+ * @param member_data include pairs of name and score
+ */
+void GetHighScores(std::vector<std::pair<std::string, int>>& member_data) {
+    std::sort(member_data.begin(), member_data.end(), [](const auto& l, const auto& r) {
+        return l.second > r.second;
     });
 }
 
 int main() {
     freopen("scores.txt", "r", stdin);
 
-    std::string inputTmpName;
-    int inputTmpScore;
+    std::string input_tmp_name;
+    int input_tmp_score;
 
-    std::vector<std::pair<std::string, int>> memberData;
-    while (std::cin >> inputTmpName >> inputTmpScore) {
-        memberData.emplace_back(inputTmpName, inputTmpScore);
+    std::vector<std::pair<std::string, int>> member_data;
+    while (std::cin >> input_tmp_name >> input_tmp_score) {
+        member_data.emplace_back(input_tmp_name, input_tmp_score);
     }
 
-    getHighScores(memberData);
+    GetHighScores(member_data);
 
-    for (int i = 0; i < std::min(3, static_cast<int>(memberData.size())); ++i) {
-        std::cout << memberData[i].first << '\n' << memberData[i].second << '\n';
+    // print at most 3 members scoreboard
+    for (int i = 0; i < std::min(3, static_cast<int>(member_data.size())); ++i) {
+        std::cout << member_data[i].first << '\n' << member_data[i].second << '\n';
     }
+
+    return 0;
 }

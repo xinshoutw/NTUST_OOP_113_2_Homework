@@ -1,7 +1,13 @@
-#include <cassert>
+////////////////////////////////////////////////////////////////////////////////
+/// @brief A drawing game on ASCII canvas.
+///
+/// @file main.cpp
+/// @author xinshoutw <admin@xinshou.tw>
+/// @date 2025/03/09
+/// @version 0.0.1
+////////////////////////////////////////////////////////////////////////////////
+
 #include <iostream>
-#include <cstdint>
-#include <iomanip>
 
 uint64_t kBorderHeight;
 uint64_t kBorderWidth;
@@ -27,11 +33,7 @@ void ProcessDrawSquare() {
     std::cin >> length >> x1 >> y1;
 
     // border check
-    if ((x1 < 0) ||
-        (y1 < 0) ||
-        (x1 + length > kBorderWidth) ||
-        (y1 + length > kBorderHeight)
-    ) {
+    if ((x1 < 0) || (y1 < 0) || (x1 + length > kBorderWidth) || (y1 + length > kBorderHeight)) {
         std::cout << "Out of range.\n\n";
         return;
     }
@@ -48,13 +50,8 @@ void ProcessDrawLine() {
     int64_t x2, y2;
     std::cin >> x1 >> y1 >> x2 >> y2;
 
-
     // border check
-    if ((x1 < 0) || (x1 >= kBorderWidth) ||
-        (y1 < 0) || (y1 >= kBorderHeight) ||
-        (x2 < 0) || (x2 >= kBorderWidth) ||
-        (y2 < 0) || (y2 >= kBorderHeight)
-    ) {
+    if ((x1 < 0) || (x1 >= kBorderWidth) || (y1 < 0) || (y1 >= kBorderHeight) || (x2 < 0) || (x2 >= kBorderWidth) || (y2 < 0) || (y2 >= kBorderHeight)) {
         std::cout << "Out of range.\n\n";
         return;
     }
@@ -126,10 +123,7 @@ void ProcessDrawTriangle() {
 
     for (int y = 0; y < length; ++y) {
         for (int x = 0; x < length - y; ++x) {
-            kCanvas[
-                (y1 + ((facing[1] == 'D') ? y : -y)) * kBorderWidth +
-                (x1 + ((facing[0] == 'R') ? x : -x))
-            ] = true;
+            kCanvas[(y1 + ((facing[1] == 'D') ? y : -y)) * kBorderWidth + (x1 + ((facing[0] == 'R') ? x : -x))] = true;
         }
     }
 
@@ -141,6 +135,8 @@ int main() {
     kCanvas = new bool[kBorderHeight * kBorderWidth]{false};
 
     std::string input_draw_type;
+
+    // read until EOF
     while (std::cin >> input_draw_type) {
         if (input_draw_type == "S") {
             ProcessDrawSquare();

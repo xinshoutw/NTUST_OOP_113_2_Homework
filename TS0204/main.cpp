@@ -1,52 +1,56 @@
-#include <iostream>
-#include <cmath>
+////////////////////////////////////////////////////////////////////////////////
+/// @brief Print input data in a table form.
+///
+/// @file main.cpp
+/// @author xinshoutw <admin@xinshou.tw>
+/// @date 2025/03/07
+/// @version 0.0.1
+////////////////////////////////////////////////////////////////////////////////
+
 #include <iomanip>
+#include <iostream>
 #include <vector>
 
 struct Employee {
     std::string name;
-    int32_t salary{};
-    int32_t award{};
+    int32_t salary;
+    int32_t award;
 
-    explicit Employee(std::string name = "", const int32_t salary = -1, const int32_t award = -1) :
-        name(std::move(name)),
-        salary(salary),
-        award(award) {
-    }
+    explicit Employee(std::string name, const int32_t salary, const int32_t award)
+        : name(std::move(name))
+        , salary(salary)
+        , award(award) {}
 };
 
 int main() {
-    int32_t inputCounts;
+    int32_t input_counts;
+    std::string input_tmp_name;
+    int32_t input_tmp_salary;
+    int32_t input_award;
 
-    std::string inputName;
-    int32_t inputSalary;
-    int32_t inputAward;
+    while (std::cin >> input_counts) {
+        std::vector<Employee> employees;
+        employees.reserve(input_counts);
 
-    while (std::cin >> inputCounts) {
-        std::vector<Employee> employees(inputCounts);
+        int32_t max_name_length = 0;
+        int32_t max_salary_length = 0;
+        int32_t max_award_length = 0;
 
-        int32_t maxNameLength = 0;
-        int32_t maxSalaryLength = 0;
-        int32_t maxAwardLength = 0;
+        for (int i = 0; i < input_counts; ++i) {
+            std::cin >> input_tmp_name >> input_tmp_salary >> input_award;
 
-        for (int i = 0; i < inputCounts; ++i) {
-            std::cin >> inputName >> inputSalary >> inputAward;
+            employees.emplace_back(input_tmp_name, input_tmp_salary, input_award);
 
-            employees[i] = Employee(inputName, inputSalary, inputAward);
-
-            maxNameLength = std::max(static_cast<int>(inputName.size()), maxNameLength);
-            maxSalaryLength = std::max(static_cast<int>(log10(inputSalary)) + 1, maxSalaryLength);
-            maxAwardLength = std::max(static_cast<int>(log10(inputAward)) + 1, maxAwardLength);
+            max_name_length = std::max(static_cast<int>(input_tmp_name.size()), max_name_length);
+            max_salary_length = std::max(static_cast<int>(log10(input_tmp_salary)) + 1, max_salary_length);
+            max_award_length = std::max(static_cast<int>(log10(input_award)) + 1, max_award_length);
         }
 
         for (const auto& i : employees) {
-            std::cout <<
-                std::setw(maxNameLength) << i.name << "|  " <<
-                std::setw(maxSalaryLength) << i.salary << "|  " <<
-                std::setw(maxAwardLength) << i.award << "\n";
+            std::cout << std::setw(max_name_length) << i.name << "|  " << std::setw(max_salary_length) << i.salary << "|  " << std::setw(max_award_length)
+                      << i.award << "\n";
         }
     }
-
 
     return 0;
 }

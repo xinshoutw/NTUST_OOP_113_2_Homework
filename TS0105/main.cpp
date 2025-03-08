@@ -1,11 +1,29 @@
+////////////////////////////////////////////////////////////////////////////////
+/// @brief Calculate a sphere volume by input radius.
+///        Limit "6" tailing decimals.
+///
+/// @file main.cpp
+/// @author xinshoutw <admin@xinshou.tw>
+/// @date 2025/03/07
+/// @version 0.0.1
+////////////////////////////////////////////////////////////////////////////////
+
+#include <iomanip>
 #include <iostream>
 
+#define PI 3.14159265358979323846
+
 int main() {
-    constexpr double PI = 3.14159265358979323846;
+    // input of positive float number
     double input_radius;
-    std::cout.precision(6);
+
+    // adjust to 6 tailing decimal
+    std::cout << std::setprecision(6) << std::fixed;
+
+    // read until EOF
     while (std::cin >> input_radius) {
-        std::cout << std::fixed << input_radius * input_radius * input_radius * PI * 4 / 3 << std::endl;
+        // radius * radius * pi * (4/3)
+        std::cout << input_radius * input_radius * input_radius * PI * 4 / 3 << '\n';
     }
 
     return 0;

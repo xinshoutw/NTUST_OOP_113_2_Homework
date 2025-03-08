@@ -1,38 +1,28 @@
-#include <iostream>
-#include <vector>
-#include <set>
+////////////////////////////////////////////////////////////////////////////////
+/// @brief Read numbers until EOF, print appear times and sort by numbers.
+///
+/// @file main.cpp
+/// @author xinshoutw <admin@xinshou.tw>
+/// @date 2025/03/08
+/// @version 0.0.1
+////////////////////////////////////////////////////////////////////////////////
+
 #include <cstdint>
-#include <algorithm>
+#include <iostream>
+#include <map>
 
 int main() {
-    std::vector<int64_t> inputInts;
-    int64_t inputTmp;
-    std::set<int64_t> inputSet;
-    while (std::cin >> inputTmp) {
-        inputInts.push_back(inputTmp);
-        inputSet.insert(inputTmp);
-    }
+    std::map<int64_t, int64_t> appear_count;
+    int64_t input_tmp;
 
-    // number, appearCount
-    std::vector<std::pair<int64_t, int64_t>> sortedResult;
-    sortedResult.reserve(inputSet.size());
-    for (auto i : inputSet) {
-        sortedResult.emplace_back(
-            i, static_cast<int64_t>(std::count(inputInts.begin(), inputInts.end(), i))
-        );
+    // read until EOF
+    while (std::cin >> input_tmp) {
+        appear_count[input_tmp]++;
     }
-
-    std::sort(
-        sortedResult.begin(),
-        sortedResult.end(),
-        [](const std::pair<int64_t, int64_t>& l, const std::pair<int64_t, int64_t>& r) {
-            return l.first < r.first;
-        }
-    );
 
     std::cout << "N\tcount\n";
-    for (const auto& i : sortedResult) {
-        std::cout << i.first << '\t' << i.second << '\n';
+    for (auto i = appear_count.rbegin(); i != appear_count.rend(); ++i) {
+        std::cout << i->first << '\t' << i->second << '\n';
     }
 
     return 0;

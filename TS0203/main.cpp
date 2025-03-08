@@ -1,30 +1,38 @@
+////////////////////////////////////////////////////////////////////////////////
+/// @brief Print the input string within a square style.
+///
+/// @file main.cpp
+/// @author xinshoutw <admin@xinshou.tw>
+/// @date 2025/03/07
+/// @version 0.0.1
+////////////////////////////////////////////////////////////////////////////////
+
 #include <cmath>
 #include <iostream>
 #include <string>
 
-using namespace std;
-
 int main() {
-    string s;
-    // Process each input line separately.
-    while (getline(cin, s)) {
-        if (s.empty())
-            continue; // Skip empty lines if any.
+    std::string input_string;
 
-        int L = s.length();
-        // Find the minimum n such that n*n >= L.
-        int n = ceil(sqrt(L));
+    // read until EOF
+    while (getline(std::cin, input_string)) {
+        const int input_length = static_cast<int32_t>(input_string.length());
 
-        // For each column j from 0 to n-1, traverse each row i.
-        for (int j = 0; j < n; j++) {
-            for (int i = 0; i < n; i++) {
-                int index = i * n + j;
-                // Only print if index is within the string length.
-                if (index < L)
-                    cout << s[index];
+        // find the minimum n such that n*n >= L.
+        const int n = ceil(sqrt(input_length));
+
+        // for each column i from 0 to n-1, traverse each row j.
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) {
+                const int index = j * n + i;
+
+                // only print if the index is within the string length.
+                if (index < input_length)
+                    std::cout << input_string[index];
             }
-            cout << "\n";
+            std::cout.put('\n');
         }
     }
+
     return 0;
 }
