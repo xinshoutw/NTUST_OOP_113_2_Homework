@@ -24,4 +24,6 @@ int main() {
     while (std::cin >> input_a >> input_b) {
         std::cout << GCD(input_a, input_b) << '\n';
     }
+
+    return 0;
 }

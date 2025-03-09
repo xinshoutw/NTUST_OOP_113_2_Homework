@@ -53,4 +53,6 @@ int main() {
 
         std::cout << input_range_min << ' ' << input_range_max << ' ' << max_steps << '\n';
     }
+
+    return 0;
 }

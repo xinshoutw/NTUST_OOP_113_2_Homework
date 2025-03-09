@@ -25,5 +25,6 @@ int main() {
     f2.setDenominator(60);
     f2.getDouble();
     f2.outputReducedFraction();
+
     return 0;
 }
