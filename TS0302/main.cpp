@@ -4,7 +4,7 @@
 ///        Write into "grades.Output".
 ///
 /// @file main.cpp
-/// @author xinshoutw <admin@xinshou.tw>
+/// @author xinshoutw <contact@xinshou.tw>
 /// @date 2025/03/09
 /// @version 0.0.1
 ////////////////////////////////////////////////////////////////////////////////

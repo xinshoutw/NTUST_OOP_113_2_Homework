@@ -2,7 +2,7 @@
 /// @brief Given a positive number as a time in seconds. Convert and print its hours, minutes and seconds.
 ///
 /// @file main.cpp
-/// @author xinshoutw <admin@xinshou.tw>
+/// @author xinshoutw <contact@xinshou.tw>
 /// @date 2025/03/07
 /// @version 0.0.1
 ////////////////////////////////////////////////////////////////////////////////
