@@ -2,6 +2,7 @@
 #define Fraction_H
 
 #include <iostream>
+#include <iomanip>
 
 class Fraction {
 private:

@@ -12,7 +12,7 @@ void Fraction::getDouble() const {
     if (numerator % denominator == 0) {
         std::cout << numerator / denominator << '\n';
     } else {
-        std::cout << static_cast<double>(numerator) / denominator << '\n';
+        std::cout << std::setprecision(6) << std::fixed << static_cast<double>(numerator) / denominator << '\n';
     }
 }
 
