@@ -13,6 +13,7 @@ public:
     void setDenominator(int de);
     void getDouble() const;
     void outputReducedFraction() const;
+    static int32_t GCD(int32_t a, int32_t b);
 };
 
 #endif // Fraction_H
