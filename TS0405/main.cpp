@@ -10,7 +10,7 @@
 #include <algorithm>
 #include <cstdint>
 #include <iostream>
-#include <map>
+#include <unordered_map>
 
 int main() {
     std::unordered_map<uint64_t, uint64_t> cache;
@@ -20,12 +20,15 @@ int main() {
     while (std::cin >> input_range_min >> input_range_max) {
         // assign smaller value to input_range_min
         // start from smaller value can make easier to find in the cache
-        if (input_range_min > input_range_max) {
-            std::swap(input_range_min, input_range_max);
+
+        uint64_t range_min = input_range_min;
+        uint64_t range_max = input_range_max;
+        if (range_min > range_max) {
+            std::swap(range_min, range_max);
         }
 
         uint64_t max_steps = 0;
-        for (uint64_t i = input_range_min; i <= input_range_max; ++i) {
+        for (uint64_t i = range_min; i <= range_max; ++i) {
             uint64_t num = i;
             uint64_t ctn = 1;
 

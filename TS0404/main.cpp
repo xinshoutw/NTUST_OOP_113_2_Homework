@@ -10,17 +10,14 @@
 #include "BankAccount.h"
 #include <iostream>
 
-int BankAccount::total = 0;
-
 int main() {
     BankAccount bankAccount1(200), bankAccount2, bankAccount3(-100);
-    std::cout << BankAccount::getAllMoneyInBank() << std::endl;
+    std::cout << BankAccount::getAllMoneyInBank() << '\n';
     bankAccount1.withdraw(100);
-    std::cout << bankAccount1.getBalance() << std::endl;
-    std::cout << BankAccount::getAllMoneyInBank() << std::endl;
+    std::cout << bankAccount1.getBalance() << '\n';
+    std::cout << BankAccount::getAllMoneyInBank() << '\n';
     bankAccount2.save(50);
-    std::cout << bankAccount2.getBalance() << std::endl;
-    std::cout << BankAccount::getAllMoneyInBank() << std::endl;
-
+    std::cout << bankAccount2.getBalance() << '\n';
+    std::cout << BankAccount::getAllMoneyInBank() << '\n';
     return 0;
 }

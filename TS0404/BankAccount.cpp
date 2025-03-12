@@ -1,5 +1,7 @@
 #include "BankAccount.h"
 
+int BankAccount::total = 0;
+
 BankAccount::BankAccount()
     : balance(0) {}
 
@@ -8,14 +10,14 @@ BankAccount::BankAccount(const int input)
     total += input;
 }
 
-void BankAccount::withdraw(int output) {
+void BankAccount::withdraw(const int output) {
     this->balance -= output;
     total -= output;
 }
 
-void BankAccount::save(int input) {
+void BankAccount::save(const int input) {
     this->balance += input;
-    total += balance;
+    total += input;
 }
 
 int BankAccount::getBalance() const {
