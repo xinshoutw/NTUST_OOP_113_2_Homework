@@ -25,7 +25,7 @@ int main() {
         }
 
         uint64_t max_steps = 0;
-        for (int i = input_range_min; i <= input_range_max; ++i) {
+        for (uint64_t i = input_range_min; i <= input_range_max; ++i) {
             uint64_t num = i;
             uint64_t ctn = 1;
 
