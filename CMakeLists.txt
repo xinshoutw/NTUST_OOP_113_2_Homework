@@ -24,5 +24,8 @@ foreach (dir ${TS_DIRS})
     file(GLOB SRC_FILES "${CMAKE_SOURCE_DIR}/${dir}/*.cpp")
     if (SRC_FILES)
         add_executable(${dir} ${SRC_FILES})
+
+        # Add #define NTUST_DEV for this executable
+        target_compile_definitions(${dir} PRIVATE NTUST_DEV)
     endif ()
 endforeach ()
