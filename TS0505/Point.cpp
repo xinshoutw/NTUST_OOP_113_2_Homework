@@ -22,9 +22,15 @@ void Point::Reflect() {
 }
 
 float Point::GetHorizontal() const {
+    if (this->x == 0)
+
+        return 0;
     return this->x;
 }
 
 float Point::GetVertical() const {
+    if (this->y == 0)
+        return 0;
+
     return this->y;
 }
