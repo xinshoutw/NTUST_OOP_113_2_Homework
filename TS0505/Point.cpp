@@ -1,4 +1,5 @@
 #include "Point.h"
+#include <algorithm>
 
 void Point::Set(const float x, const float y) {
     this->x = x;

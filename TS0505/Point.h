@@ -1,12 +1,11 @@
 #ifndef POINT_H
 #define POINT_H
 
-#include <algorithm>
-
 class Point {
 
 public:
     Point() = default;
+    ~Point() = default;
 
     void Set(float x, float y);
     void Move(float dx, float dy);
