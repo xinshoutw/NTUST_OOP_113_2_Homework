@@ -10,18 +10,26 @@ Month::Month() {
     this->month = 1;
 }
 
-Month::Month(char first, char second, char third) {
+Month::Month(const char first, const char second, const char third) {
     const auto combined_input_str = new char[4];
     combined_input_str[0] = first;
     combined_input_str[1] = second;
     combined_input_str[2] = third;
+    combined_input_str[3] = '\0';
 
-    this->month = Month::month2Int[combined_input_str];
+    const auto found = Month::month2Int.find(combined_input_str);
+
+    if (found == Month::month2Int.end()) {
+        this->month = 1;
+    } else {
+        this->month = found->second;
+    }
 }
 
 Month::Month(const int monthInt) {
     if (monthInt < 1 || monthInt > 12) {
         this->month = 1;
+        return;
     }
 
     this->month = monthInt;
@@ -46,17 +54,23 @@ void Month::inputStr() {
     std::cin >> combined_input_str[1];
     std::cin >> combined_input_str[2];
 
-    this->month = Month::month2Int[combined_input_str];
+    const auto found = Month::month2Int.find(combined_input_str);
+
+    if (found == Month::month2Int.end()) {
+        this->month = 1;
+    } else {
+        this->month = found->second;
+    }
 }
 
-void Month::outputInt() {
+void Month::outputInt() const {
     std::cout << this->month;
 }
 
-void Month::outputStr() {
+void Month::outputStr() const {
     std::cout << Month::int2Month[this->month];
 }
 
-Month Month::nextMonth() {
-    return Month{this->month + 1};
+Month Month::nextMonth() const {
+    return Month(this->month + 1);
 }
