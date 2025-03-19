@@ -10,6 +10,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <algorithm>
 
 typedef struct {
     char firstName[25];
@@ -68,8 +69,8 @@ int main() {
         // Input Error check
         if (static_cast<int>(inputs.size()) == 4) {
             if (static_cast<int>(inputs[1].size()) > 25 || static_cast<int>(inputs[2].size()) > 30 || static_cast<int>(inputs[3].size()) > 15 ||
-                std::all_of(inputs[3].begin(), inputs[3].end(), [](const char& i) {
-                    return isalpha(i);
+                std::any_of(inputs[3].begin(), inputs[3].end(), [](const char& i) {
+                    return !isdigit(i);
                 }))
             {
                 std::cout << "Input Error\n";
