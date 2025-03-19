@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-/// @brief
+/// @brief Verification program that checks if a given 9x9 grid follows Sudoku rules
 ///
 /// @file main.cpp
 /// @author xinshoutw <contact@xinshou.tw>
@@ -8,74 +8,75 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
-#include <set>
+#include <string>
 #include <vector>
 
-bool verify_sudoku(const std::vector<char>& smap);
+bool verify_sudoku(const std::vector<int>& smap);
 
 int main() {
-    std::vector<char> sudoku_map;
+    std::vector<int> sudoku_map;
     sudoku_map.reserve(81);
-    while (!std::cin.eof()) {
-        sudoku_map.clear();
+    std::string input_str;
 
-        for (int i = 0; i < 81; ++i) {
-            sudoku_map.push_back(static_cast<char>(std::cin.get() - '0'));
-            std::cin.get(); // ignore ',' or '\n'
+    while (getline(std::cin, input_str)) {
+        if (input_str.empty()) continue;
+
+        for (const auto& i : input_str) {
+            if (i != ',')
+                sudoku_map.push_back(i - '0' - 1); // map 1 ~ 9 to 0 ~ 8
+
+            if (static_cast<int>(sudoku_map.size()) == 81) {
+                if (verify_sudoku(sudoku_map)) {
+                    std::cout << "True\n";
+                } else {
+                    std::cout << "False\n";
+                }
+                sudoku_map.clear();
+            }
         }
-
-        if (verify_sudoku(sudoku_map)) {
-            std::cout << "True\n";
-        } else {
-            std::cout << "False\n";
-        }
-
-        std::cin >> std::ws; // skip last '\n' and ' '
     }
 }
 
-bool verify_sudoku(const std::vector<char>& smap) {
+bool verify_sudoku(const std::vector<int>& smap) {
     // check horizons
     for (int y = 0; y < 9; ++y) {
-        std::set<char> appear;
-
+        int counter = 0;
         for (int x = 0; x < 9; ++x) {
-            appear.insert(smap[9 * y + x]);
+            counter += (1 << smap[9 * y + x]);
         }
 
-        if (static_cast<int>(appear.size()) != 9)
+        if (counter != 0b111111111)
             return false;
     }
 
     // check verticals
     for (int x = 0; x < 9; ++x) {
-        std::set<char> appear;
-
+        int counter = 0;
         for (int y = 0; y < 9; ++y) {
-            appear.insert(smap[9 * y + x]);
+            counter += (1 << smap[9 * y + x]);
         }
 
-        if (static_cast<int>(appear.size()) != 9)
+        if (counter != 0b111111111)
             return false;
     }
 
     // check square box
     for (int y = 0; y < 9; y += 3) {
-        std::set<char> appear;
         for (int x = 0; x < 9; x += 3) {
-            appear.insert(smap[9 * y + x]);
-            appear.insert(smap[9 * y + (x + 1)]);
-            appear.insert(smap[9 * y + (x + 2)]);
-            appear.insert(smap[9 * (y + 1) + x]);
-            appear.insert(smap[9 * (y + 1) + (x + 1)]);
-            appear.insert(smap[9 * (y + 1) + (x + 2)]);
-            appear.insert(smap[9 * (y + 2) + x]);
-            appear.insert(smap[9 * (y + 2) + (x + 1)]);
-            appear.insert(smap[9 * (y + 2) + (x + 2)]);
-        }
+            int counter = 0;
+            counter += (1 << smap[9 * y + x]);
+            counter += (1 << smap[9 * y + (x + 1)]);
+            counter += (1 << smap[9 * y + (x + 2)]);
+            counter += (1 << smap[9 * (y + 1) + x]);
+            counter += (1 << smap[9 * (y + 1) + (x + 1)]);
+            counter += (1 << smap[9 * (y + 1) + (x + 2)]);
+            counter += (1 << smap[9 * (y + 2) + x]);
+            counter += (1 << smap[9 * (y + 2) + (x + 1)]);
+            counter += (1 << smap[9 * (y + 2) + (x + 2)]);
 
-        if (static_cast<int>(appear.size()) != 9)
-            return false;
+            if (counter != 0b111111111)
+                return false;
+        }
     }
 
     return true;
