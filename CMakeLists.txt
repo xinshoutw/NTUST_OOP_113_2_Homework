@@ -21,7 +21,7 @@ foreach (dir ${TS_DIRS})
     endif ()
 
     # grab all .cpp file
-    file(GLOB SRC_FILES "${CMAKE_SOURCE_DIR}/${dir}/*.cpp")
+    file(GLOB SRC_FILES "${CMAKE_SOURCE_DIR}/${dir}/*.cpp" "${CMAKE_SOURCE_DIR}/${dir}/*.h")
     if (SRC_FILES)
         add_executable(${dir} ${SRC_FILES})
 
