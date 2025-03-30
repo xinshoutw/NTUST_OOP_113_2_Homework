@@ -22,5 +22,6 @@ public:
     void SetFileName(string fileName);   // set file name
     void Load_CompareWord();             // read-in data and compare
     void PrintFoundWords();              // print answers
+    [[deprecated]] string GetFilename();
 };
 #endif // FORM_H

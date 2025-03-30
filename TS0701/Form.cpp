@@ -11,6 +11,7 @@ void Form::SetInputWord(string inputWord) {
 }
 
 void Form::ProcessInputWord() {
+
     for (const auto& i : inputWord) {
         if (tolower(i) < 'a' || tolower(i) > 'z')
             continue;
