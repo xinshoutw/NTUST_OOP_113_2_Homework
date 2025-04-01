@@ -17,15 +17,16 @@ void Player::sortBuffs() {
 void Player::parse() {
     sortBuffs();
 
-    if (buffs.empty()) {
-        cout << "Power: " << power << '\n' << "Defense: " << defense << '\n' << "Speed: " << speed << '\n' << "No Buff\n";
-        return;
-    }
-
+    bool empty = true;
     float newPower = power;
     float newDefense = defense;
     float newSpeed = speed;
     for (const auto& i : buffs) {
+        if (i.remainingTime <= 0) {
+            continue;
+        }
+        empty = false;
+
         if (i.type == Attribute::POWER) {
             newPower = newPower * i.multiplier + i.addend;
         } else if (i.type == Attribute::DEFENSE) {
@@ -35,21 +36,27 @@ void Player::parse() {
         }
     }
 
+    if (empty) {
+        cout << "Power: " << power << '\n' << "Defense: " << defense << '\n' << "Speed: " << speed << '\n' << "No Buff\n";
+        return;
+    }
+
     cout << "Power: " << newPower << '\n' << "Defense: " << newDefense << '\n' << "Speed: " << newSpeed << '\n' << "Buff List: ";
 
     cout << buffs[0].name;
     for (int i = 1; i < static_cast<int>(buffs.size()); ++i) {
-        cout << ", "<< buffs[i].name;
+        if (buffs[i].remainingTime <= 0)
+            continue;
+        cout << ", " << buffs[i].name;
     }
 
     cout << '\n';
 }
 
-void Player::addBuff(Buff buff) {
+void Player::addBuff(const Buff& buff) {
     tick(1);
 
     string name = buff.name;
-
     const auto found = find_if(buffs.begin(), buffs.end(), [&name](const Buff& b) {
         return b.name == name;
     });
@@ -70,9 +77,9 @@ void Player::removeBuff(std::string name) {
     });
 
     if (found == buffs.end()) {
-        cout << "Remove " << name << " Strength failed!\n";
+        cout << "Remove BUFF " << name << " failed!\n";
     } else {
-        cout << "Remove " << name << " Strength success!\n";
+        cout << "Remove BUFF " << name << " success!\n";
         buffs.erase(found);
     }
 }
@@ -105,17 +112,8 @@ void Player::cleanse() {
     }
 }
 
-void Player::tick(int time) {
-    int bSize = static_cast<int>(buffs.size());
-
-    for (int i = 0; i < bSize; ++i) {
-        Buff& tmp = buffs[i];
-        tmp.remainingTime -= time;
-
-        if (tmp.remainingTime <= 0) {
-            buffs.erase(buffs.begin() + i);
-            i--;
-            bSize--;
-        }
+void Player::tick(const int time) {
+    for (auto& i : buffs) {
+        i.remainingTime -= time;
     }
 }

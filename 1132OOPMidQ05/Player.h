@@ -18,7 +18,7 @@ public:
         , defense(defense)
         , speed(speed) {};
     void parse();
-    void addBuff(Buff buff);
+    void addBuff(const Buff& buff);
     void removeBuff(std::string name);
     void cleanse();
     void tick(int time);
