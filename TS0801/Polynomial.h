@@ -9,7 +9,6 @@ private:
     std::valarray<double> coeff;
 
 public:
-
     Polynomial() = default;
 
     Polynomial(double* coeff, int size)
@@ -42,9 +41,7 @@ public:
 
     Polynomial& operator=(const Polynomial& rhs);
 
-    friend double evaluate(const Polynomial&, double);
+    friend double evaluate(const Polynomial& poly, double var);
 };
-
-double evaluate(const Polynomial& poly, double var);
 
 #endif // POLYNOMIAL_H
