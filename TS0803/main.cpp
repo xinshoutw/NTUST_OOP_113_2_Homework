@@ -34,6 +34,7 @@ int main() {
                     }
                     mems[inpPos + i] = inpValueString[i];
                 }
+
             } else if (inpType == "int") {
                 cin >> inpValue;
 
@@ -44,6 +45,7 @@ int main() {
                     }
                     mems[inpPos + i] = inpValue & 0xFF;
                 }
+
             } else if (inpType == "short") {
                 cin >> inpValue;
 
@@ -54,6 +56,7 @@ int main() {
                     }
                     mems[inpPos + i] = inpValue & 0xFF;
                 }
+
             } else if (inpType == "char") {
                 cin >> inpValue;
                 if (inpPos >= memSize) {
@@ -71,10 +74,11 @@ int main() {
             }
 
             if (inpType == "String") {
-                for (size_t i = 0; (inpPos + i < memSize) && (*(mems + inpPos + i) != '\0'); ++i) {
-                    cout << (static_cast<char>(*(mems + inpPos + i)));
+                for (size_t i = 0; (inpPos + i < memSize) && (mems[inpPos + i] != '\0'); ++i) {
+                    cout << (static_cast<char>(mems[inpPos + i]));
                 }
                 cout << '\n';
+
             } else if (inpType == "int") {
                 if (inpPos + 3 >= memSize) {
                     cout << "Violation Access.\n";
@@ -83,9 +87,10 @@ int main() {
 
                 int32_t result = 0;
                 for (int i = 3; i >= 0; --i) {
-                    result = (result << 8) | *(mems + inpPos + i);
+                    result = (result << 8) | mems[inpPos + i];
                 }
                 cout << result << '\n';
+
             } else if (inpType == "short") {
                 if (inpPos + 1 >= memSize) {
                     cout << "Violation Access.\n";
@@ -94,9 +99,10 @@ int main() {
 
                 int32_t result = 0;
                 for (int i = 1; i >= 0; --i) {
-                    result = (result << 8) | *(mems + inpPos + i);
+                    result = (result << 8) | mems[inpPos + i];
                 }
                 cout << result << '\n';
+
             } else if (inpType == "char") {
                 cout << static_cast<unsigned int>(mems[inpPos]) << '\n';
             }
