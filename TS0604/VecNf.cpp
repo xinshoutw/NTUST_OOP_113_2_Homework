@@ -51,14 +51,6 @@ VecNf VecNf::operator+(const VecNf& rhs) {
     newVec.vec += rhs.vec;
     return newVec;
 }
-VecNf operator+(const VecNf& lhs, const VecNf& rhs) {
-    if (lhs.cnt != rhs.cnt) {
-        std::cout << "dimensions inconsistent\n";
-        return {};
-    }
-
-    return VecNf(lhs.vec + rhs.vec, lhs.cnt);
-}
 
 VecNf VecNf::operator-(const VecNf& rhs) {
     if (this->cnt != rhs.cnt) {
@@ -69,14 +61,6 @@ VecNf VecNf::operator-(const VecNf& rhs) {
     auto newVec = VecNf(*this);
     newVec.vec -= rhs.vec;
     return newVec;
-}
-VecNf operator-(const VecNf& lhs, const VecNf& rhs) {
-    if (lhs.cnt != rhs.cnt) {
-        std::cout << "dimensions inconsistent\n";
-        return {};
-    }
-
-    return VecNf(lhs.vec - rhs.vec, lhs.cnt);
 }
 
 double VecNf::operator*(const VecNf& rhs) const {

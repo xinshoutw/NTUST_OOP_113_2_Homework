@@ -17,10 +17,8 @@ public:
     VecNf& operator=(const VecNf& rhs);
 
     VecNf operator+(const VecNf& rhs);
-    friend VecNf operator+(const VecNf& lhs, const VecNf& rhs);
 
     VecNf operator-(const VecNf& rhs);
-    friend VecNf operator-(const VecNf& lhs, const VecNf& rhs);
 
     double operator*(const VecNf& rhs) const;
     VecNf operator*(float scale);
