@@ -62,21 +62,13 @@ LogProxy Creature::operator[](const std::string& id) {
 
 // ========= LogProxy =========
 int& LogProxy::operator+=(const int cnt) {
-    int& value = creature->body[bodyName];
-    const int dayIndex = Diary::dayIndex - creature->startIndex;
-
-    if (dayIndex >= static_cast<int>(creature->logData.size())) {
-        creature->logData.resize(creature->logData.size() + 10);
-    }
-
-    creature->logData[dayIndex].emplace_back(bodyName, value, value + cnt);
-    value += cnt;
-
-    return value;
+    *this = (creature->body[bodyName] + cnt);
+    return creature->body[bodyName];
 }
 
 int& LogProxy::operator-=(const int cnt) {
-    return *this += (-cnt);
+    *this = (creature->body[bodyName] - cnt);
+    return creature->body[bodyName];
 }
 
 LogProxy& LogProxy::operator=(int cnt) {
