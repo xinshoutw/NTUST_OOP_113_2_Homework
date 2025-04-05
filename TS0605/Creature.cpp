@@ -31,8 +31,7 @@ void Creature::PrintLog() const {
     std::cout << name << "'s log:\n";
 
     for (int i = startIndex; i <= Diary::dayIndex; ++i) {
-        const std::string& day = Diary::dayNames[i];
-        std::cout << "Day " << day << '\n';
+        std::cout << "Day " << Diary::dayNames[i] << '\n';
 
         if (i - startIndex >= logData.size())
             continue;
