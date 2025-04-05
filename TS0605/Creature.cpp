@@ -76,17 +76,7 @@ int& LogProxy::operator+=(const int cnt) {
 }
 
 int& LogProxy::operator-=(const int cnt) {
-    int& value = creature->body[bodyName];
-    const int dayIndex = Diary::dayIndex - creature->startIndex;
-
-    if (dayIndex >= static_cast<int>(creature->logData.size())) {
-        creature->logData.resize(creature->logData.size() + 10);
-    }
-
-    creature->logData[dayIndex].emplace_back(bodyName, value, value - cnt);
-    value -= cnt;
-
-    return value;
+    return *this += (-cnt);
 }
 
 LogProxy& LogProxy::operator=(int cnt) {
