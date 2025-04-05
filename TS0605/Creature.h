@@ -9,14 +9,14 @@ class Creature;
 class LogProxy;
 
 struct LogData {
-    std::string body;
     int before;
     int after;
+    std::string body;
 
     LogData(std::string body, const int before, const int after)
-        : body(std::move(body))
-        , before(before)
-        , after(after) {};
+        : before(before)
+        , after(after)
+        , body(std::move(body)) {};
 };
 
 class Creature {
