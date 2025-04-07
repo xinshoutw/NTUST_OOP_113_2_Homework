@@ -193,13 +193,13 @@
   <summary>補充說明</summary>
   輸入測資 String 包含空白字元
 
-  > `Set 2 char 33` 
+  > `Set 2 char 33`  
   char 僅代表資料大小，不代表輸入輸出格式。
 
-  > `if the size of value exceeds the size of type, the excess part will be ignored`
+  > `if the size of value exceeds the size of type, the excess part will be ignored`  
   輸入資料大小若溢出之前指定的類型，需要忽略掉多餘的部分。換句話說，輸入資料可以很大。
 
-  > `and if overflow occurs (position + type size > N), please output "Violation Access".`
+  > `and if overflow occurs (position + type size > N), please output "Violation Access".`  
   測資與題意不合。應該為「若當下要寫的一個位址超出記憶體大小，則輸出 "Violation Access" 且停止當次寫入動作」。換句話說，嘗試寫到寫不下為止。
 
 </details>
