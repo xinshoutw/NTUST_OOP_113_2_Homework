@@ -20,4 +20,22 @@ int main() {
     unknownA["leg"] += 6;
     unknownA["wing"] += 4;
     unknownA.PrintLog();
+
+    Diary::NewDay("1A");
+    Creature unknownC("UC");
+    unknownC["leg"] += 6;
+    unknownC["leg"] += -2;
+    unknownC["leg"] -= 4;
+    unknownC.PrintStatus();
+    unknownC.PrintLog();
+
+    Diary::NewDay("2A");
+    unknownC["leg"] -= -2;
+    unknownC.PrintStatus();
+    unknownC.PrintLog();
+
+    Diary::NewDay("1A");
+    unknownC["leg"] = 3;
+    unknownC.PrintStatus();
+    unknownC.PrintLog();
 }

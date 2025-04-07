@@ -33,5 +33,10 @@ int main() {
 
     cout << A * C << endl; // Inconsistent
 
+    VecNf improveCase1;
+    improveCase1[1000] = 99;
+    std::cout << improveCase1[1000] << '\n';
+    std::cout << improveCase1[10000] << '\n';
+
     return 0;
 }
