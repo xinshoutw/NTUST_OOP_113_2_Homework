@@ -30,6 +30,22 @@ Complex Complex::operator/(const Complex c) const {
     return (*this) * Complex(c.realValue / div, -c.imaginaryValue / div);
 }
 
+Complex Complex::operator+(const double c) const {
+    return (*this) + Complex(c);
+}
+
+Complex Complex::operator-(const double c) const {
+    return (*this) - Complex(c);
+}
+
+Complex Complex::operator*(const double c) const {
+    return (*this) * Complex(c);
+}
+
+Complex Complex::operator/(const double c) const {
+    return (*this) / Complex(c);
+}
+
 double real(const Complex c) {
     return c.realValue;
 }
@@ -63,15 +79,13 @@ bool operator==(const Complex c1, const Complex c2) {
 }
 
 ostream& operator<<(ostream& strm, const Complex& c) {
-    strm << c.realValue << " + " << c.imaginaryValue << "*i";
-    return strm;
+    return strm << c.realValue << " + " << c.imaginaryValue << "*i";
 }
 
 istream& operator>>(istream& strm, Complex& c) {
     std::string inp;
-    char foo;
-    strm >> std::ws;
-    getline(strm, inp);
-    sscanf(inp.c_str(), "%c = %lf + %lf*i", &foo, &(c.realValue), &(c.imaginaryValue));
+    if (std::getline(strm, inp)) {
+        sscanf(inp.c_str(), "%*c = %lf + %lf*i", &(c.realValue), &(c.imaginaryValue));
+    }
     return strm;
 }

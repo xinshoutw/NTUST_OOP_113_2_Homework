@@ -31,6 +31,10 @@ public:
     Complex operator-(Complex c) const;
     Complex operator*(Complex c) const;
     Complex operator/(Complex c) const;
+    Complex operator+(double c) const;
+    Complex operator-(double c) const;
+    Complex operator*(double c) const;
+    Complex operator/(double c) const;
     friend Complex operator+(double d, Complex c);
     friend Complex operator-(double d, Complex c);
     friend Complex operator*(double d, Complex c);
