@@ -1,6 +1,5 @@
 #include "Creature.h"
 #include "Diary.h"
-
 #include <iostream>
 
 Creature::Creature(std::string name) {
@@ -39,7 +38,7 @@ void Creature::PrintLog() const {
             if (data.before == 0 && data.after == 0) {
                 // ignore
             } else if (data.before == 0) {
-                std::cout << name << "'s " << data.body << " appeared (" << data.before << " -> " << data.after << ").\n";
+                std::cout << name << "'s " << data.body << " appeared (0" << " -> " << data.after << ").\n";
             } else if (data.before < data.after) {
                 std::cout << name << "'s " << data.body << " increased (" << data.before << " -> " << data.after << ").\n";
             } else if (data.before > data.after) {
@@ -60,17 +59,15 @@ LogProxy Creature::operator[](const std::string& id) {
 }
 
 // ========= LogProxy =========
-int& LogProxy::operator+=(const int cnt) {
-    *this = (creature->body[bodyName] + cnt);
-    return creature->body[bodyName];
+LogProxy& LogProxy::operator+=(const int cnt) {
+    return *this = creature->body[bodyName] + cnt;
 }
 
-int& LogProxy::operator-=(const int cnt) {
-    *this = (creature->body[bodyName] - cnt);
-    return creature->body[bodyName];
+LogProxy& LogProxy::operator-=(const int cnt) {
+    return *this = creature->body[bodyName] - cnt;
 }
 
-LogProxy& LogProxy::operator=(int cnt) {
+LogProxy& LogProxy::operator=(const int cnt) {
     int& value = creature->body[bodyName];
     const int dayIndex = Diary::dayIndex - creature->startIndex;
 

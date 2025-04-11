@@ -41,8 +41,8 @@ public:
     LogProxy(Creature* creature, std::string body)
         : creature(creature)
         , bodyName(std::move(body)) {};
-    int& operator+=(int cnt);
-    int& operator-=(int cnt);
+    LogProxy& operator+=(int cnt);
+    LogProxy& operator-=(int cnt);
     LogProxy& operator=(int cnt);
 
 private:
