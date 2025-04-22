@@ -6,11 +6,11 @@
 #define posToRC(pos) {pos / 4, pos % 4}
 
 auto isPossible(const char* board, const char* str, const int curPos, bool* visited) -> bool {
-    if (*str == '\0')
-        return true;
-
     if (visited[curPos])
         return false;
+
+    if (*str == '\0')
+        return true;
 
     visited[curPos] = true;
 
