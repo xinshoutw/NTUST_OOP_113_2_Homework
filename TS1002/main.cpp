@@ -5,60 +5,43 @@
 
 #define posToRC(pos) {pos / 4, pos % 4}
 
-auto isPossible(const char* board, const char* str, const int curPos, bool* visited) -> bool {
-    if (visited[curPos])
+bool isPossible(const char* board, const char* str, const int curPos, bool* visited) {
+    if (visited[curPos] || board[curPos] != *str)
         return false;
 
-    if (*str == '\0')
+    if (*(str + 1) == '\0')
         return true;
 
-    visited[curPos] = true;
-
-    // y(row), x(col)
     const std::pair<int, int> rc = posToRC(curPos);
+
+    visited[curPos] = true;
     bool result = false;
 
-    // lu
-    if (rc.first > 0 && rc.second > 0 && board[curPos - 5] == str[0]) {
-        if (isPossible(board, str + 1, curPos - 5, visited)) result = true;
-    }
+    if (rc.first > 0 && rc.second > 0)
+        result = result || isPossible(board, str + 1, curPos - 5, visited);
 
-    // u
-    if (!result && rc.first > 0 && board[curPos - 4] == str[0]) {
-        if (isPossible(board, str + 1, curPos - 4, visited)) result = true;
-    }
+    if (rc.first > 0)
+        result = result || isPossible(board, str + 1, curPos - 4, visited);
 
-    // ru
-    if (!result && rc.first > 0 && rc.second < 3 && board[curPos - 3] == str[0]) {
-        if (isPossible(board, str + 1, curPos - 3, visited)) result = true;
-    }
+    if (rc.first > 0 && rc.second < 3)
+        result = result || isPossible(board, str + 1, curPos - 3, visited);
 
-    // l
-    if (!result && rc.second > 0 && board[curPos - 1] == str[0]) {
-        if (isPossible(board, str + 1, curPos - 1, visited)) result = true;
-    }
+    if (rc.second > 0)
+        result = result || isPossible(board, str + 1, curPos - 1, visited);
 
-    // r
-    if (!result && rc.second < 3 && board[curPos + 1] == str[0]) {
-        if (isPossible(board, str + 1, curPos + 1, visited)) result = true;
-    }
+    if (rc.second < 3)
+        result = result || isPossible(board, str + 1, curPos + 1, visited);
 
-    // ld
-    if (!result && rc.first < 3 && rc.second > 0 && board[curPos + 3] == str[0]) {
-        if (isPossible(board, str + 1, curPos + 3, visited)) result = true;
-    }
+    if (rc.first < 3 && rc.second > 0)
+        result = result || isPossible(board, str + 1, curPos + 3, visited);
 
-    // d
-    if (!result && rc.first < 3 && board[curPos + 4] == str[0]) {
-        if (isPossible(board, str + 1, curPos + 4, visited)) result = true;
-    }
+    if (rc.first < 3)
+        result = result || isPossible(board, str + 1, curPos + 4, visited);
 
-    // rd
-    if (!result && rc.first < 3 && rc.second < 3 && board[curPos + 5] == str[0]) {
-        if (isPossible(board, str + 1, curPos + 5, visited)) result = true;
-    }
+    if (rc.first < 3 && rc.second < 3)
+        result = result || isPossible(board, str + 1, curPos + 5, visited);
 
-    visited[curPos] = false;  // Backtrack
+    visited[curPos] = false;
     return result;
 }
 
@@ -93,12 +76,13 @@ int main() {
                 }
             }
 
-            if (impossible) continue;
+            if (impossible)
+                continue;
 
             for (int i = 0; i < 16; ++i) {
                 if (board[i] == word[0]) {
                     bool visited[16] = {false};
-                    if (isPossible(board, word.c_str() + 1, i, visited)) {
+                    if (isPossible(board, word.c_str(), i, visited)) {
                         std::cout << word << '\n';
                         break;
                     }
@@ -108,4 +92,6 @@ int main() {
         std::cout << '\n';
         fs.close();
     }
+
+    return 0;
 }
