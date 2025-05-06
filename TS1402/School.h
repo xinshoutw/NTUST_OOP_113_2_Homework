@@ -92,7 +92,6 @@ public:
 
 private:
     double growing_rate = 0.05;
-    int dropoutCounter{};
 };
 
 #endif // SCHOOL_H
