@@ -177,7 +177,7 @@ public:
     }
 };
 
-int main(int argc, char* argv[]) {
+int main() {
     string lhs, rhs;
     // cout << Calculator::singleMul("123", 2);
     // cout << Calculator::singleMul("1230", 2);
