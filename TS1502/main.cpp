@@ -122,9 +122,8 @@ public:
             }
             std::string title(title_c);
             std::string author(author_c);
-            const std::pair<std::string, std::string> book_key = {title, author};
 
-            const auto it = database.find(book_key);
+            const auto it = database.find({title, author});
             if (it != database.end() && !it->second.empty()) {
                 std::cout << "Title: " << title << "\tAuthor: " << author << "\tEdition: ";
                 join(it->second);
